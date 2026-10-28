@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APEX CLUB | 프리미엄 피트니스 - 1회 무료 체험</title>
+  <meta name="description" content="해외 명품 머신, 1:1 정밀 체형분석, 프라이빗 샤워룸. 프리미엄 피트니스 APEX CLUB에서 1회 무료 체험을 신청하세요." />
+
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'] },
+          colors: {
+            base: '#0f172a',
+            deep: '#0b1120',
+            card: '#162033',
+            neon: '#84cc16',
+            volt: '#06b6d4'
+          },
+          boxShadow: {
+            neon: '0 0 30px rgba(132,204,22,.35)',
+            'neon-lg': '0 0 55px rgba(132,204,22,.5)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0f172a; }
+    .hero-bg {
+      background:
+        linear-gradient(180deg, rgba(15,23,42,.55) 0%, rgba(15,23,42,.82) 70%, #0f172a 100%),
+        radial-gradient(ellipse at 20% 20%, rgba(132,204,22,.18), transparent 55%),
+        radial-gradient(ellipse at 85% 80%, rgba(6,182,212,.18), transparent 55%),
+        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat,
+        #0f172a;
+    }
+    .grid-lines {
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    }
+    .text-glow { text-shadow: 0 0 28px rgba(132,204,22,.55); }
+    .pulse-ring { animation: pulse-ring 2.2s ease-out infinite; }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(132,204,22,.55); }
+      80%, 100% { box-shadow: 0 0 0 18px rgba(132,204,22,0); }
+    }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.show { opacity: 1; transform: none; }
+    .feature-card:hover .icon-wrap { background: #84cc16; color: #0f172a; }
+    input::placeholder { color: #64748b; }
+    select option { background: #162033; color: #fff; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .pulse-ring { animation: none; }
+    }
+  </style>
+</head>
+<body class="font-sans text-slate-200 antialiased">
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-base/70 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+      <a href="#top" class="text-xl font-black tracking-[.2em] text-white">APEX<span class="text-neon">.</span>CLUB</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#features" class="hover:text-neon transition">특장점</a>
+        <a href="#trainers" class="hover:text-neon transition">트레이너</a>
+        <a href="#contact" class="hover:text-neon transition">상담 신청</a>
+      </nav>
+      <a href="#contact" class="text-sm font-bold bg-neon text-base px-4 py-2 rounded-full hover:shadow-neon transition">무료 체험</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="hero-bg relative min-h-screen flex items-center pt-16 overflow-hidden">
+    <div class="grid-lines absolute inset-0 pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-20 w-full">
+      <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-widest text-neon border border-neon/40 bg-neon/10 rounded-full px-4 py-1.5 mb-6">
+        <span class="w-2 h-2 rounded-full bg-neon animate-pulse"></span>
+        PREMIUM PRIVATE FITNESS
+      </span>
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black leading-[1.12] text-white tracking-tight">
+        한계를 넘는 순간,<br />
+        <span class="text-neon text-glow">당신의 몸이 달라집니다.</span>
+      </h1>
+      <p class="mt-6 max-w-xl text-base sm:text-lg text-slate-300 leading-relaxed">
+        세계 최고급 머신과 데이터 기반 1:1 코칭, 오직 회원만을 위한 프라이빗 공간.
+        평범한 헬스장과는 시작부터 다른 경험을 만나보세요.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 sm:items-center">
+        <a href="#contact"
+           class="pulse-ring inline-flex items-center justify-center gap-2 bg-neon text-base font-extrabold text-lg px-8 py-4 rounded-full shadow-neon hover:shadow-neon-lg hover:-translate-y-0.5 transition">
+          1회 무료 체험 신청
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+        <a href="#features" class="inline-flex items-center justify-center text-white/90 font-semibold px-6 py-4 rounded-full border border-white/20 hover:border-neon hover:text-neon transition">
+          더 알아보기
+        </a>
+      </div>
+
+      <div class="mt-16 grid grid-cols-3 max-w-lg gap-4 text-center sm:text-left">
+        <div><p class="text-2xl sm:text-3xl font-black text-white">1:1</p><p class="text-xs sm:text-sm text-slate-400 mt-1">전담 트레이너</p></div>
+        <div><p class="text-2xl sm:text-3xl font-black text-white">24H</p><p class="text-xs sm:text-sm text-slate-400 mt-1">회원 전용 이용</p></div>
+        <div><p class="text-2xl sm:text-3xl font-black text-white">100%</p><p class="text-xs sm:text-sm text-slate-400 mt-1">예약제 프라이빗</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="relative py-24 bg-base">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="reveal text-center mb-14">
+        <p class="text-neon text-sm font-bold tracking-[.25em] mb-3">WHY APEX</p>
+        <h2 class="text-3xl sm:text-5xl font-black text-white">다르게 설계된 3가지 이유</h2>
+        <p class="mt-4 text-slate-400">운동의 본질에 집중할 수 있도록, 모든 것을 한 단계 위로 끌어올렸습니다.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- 1 -->
+        <article class="reveal feature-card group bg-card border border-white/5 rounded-3xl p-8 hover:border-neon/60 hover:-translate-y-1 hover:shadow-neon transition duration-300">
+          <div class="icon-wrap w-14 h-14 rounded-2xl bg-neon/10 text-neon flex items-center justify-center mb-6 transition">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9v6m3-8v10m12-10v10m3-8v6M6 12h12"/></svg>
+          </div>
+          <h3 class="text-xl font-extrabold text-white mb-3">최고급 해외 명품 머신 구비</h3>
+          <p class="text-slate-400 leading-relaxed">유럽·북미 프리미엄 브랜드의 바이오메카닉 머신을 도입했습니다. 관절 부담은 줄이고 자극은 정확하게, 운동 효율이 달라집니다.</p>
+        </article>
+        <!-- 2 -->
+        <article class="reveal feature-card group bg-card border border-white/5 rounded-3xl p-8 hover:border-neon/60 hover:-translate-y-1 hover:shadow-neon transition duration-300">
+          <div class="icon-wrap w-14 h-14 rounded-2xl bg-neon/10 text-neon flex items-center justify-center mb-6 transition">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg>
+          </div>
+          <h3 class="text-xl font-extrabold text-white mb-3">1:1 맞춤 정밀 체형분석</h3>
+          <p class="text-slate-400 leading-relaxed">체성분·자세·가동성까지 정밀하게 측정하고, 분석 결과를 바탕으로 나만의 운동·식단 로드맵을 설계해 드립니다.</p>
+        </article>
+        <!-- 3 -->
+        <article class="reveal feature-card group bg-card border border-white/5 rounded-3xl p-8 hover:border-neon/60 hover:-translate-y-1 hover:shadow-neon transition duration-300">
+          <div class="icon-wrap w-14 h-14 rounded-2xl bg-neon/10 text-neon flex items-center justify-center mb-6 transition">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c3 4 6 6.5 6 10a6 6 0 1 1-12 0c0-3.5 3-6 6-10Z"/></svg>
+          </div>
+          <h3 class="text-xl font-extrabold text-white mb-3">프라이빗 1인 샤워룸</h3>
+          <p class="text-slate-400 leading-relaxed">운동 후에는 오직 나만을 위한 독립 공간에서. 고급 어메니티와 완벽한 프라이버시로 호텔 같은 마무리를 경험하세요.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINERS -->
+  <section id="trainers" class="relative py-24 bg-deep overflow-hidden">
+    <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-volt/10 blur-3xl pointer-events-none"></div>
+    <div class="max-w-6xl mx-auto px-5 relative">
+      <div class="reveal text-center mb-14">
+        <p class="text-neon text-sm font-bold tracking-[.25em] mb-3">MASTER TRAINERS</p>
+        <h2 class="text-3xl sm:text-5xl font-black text-white">결과로 증명하는 전문가</h2>
+        <p class="mt-4 text-slate-400">검증된 자격과 무대 위 경력을 갖춘 트레이너가 직접 코칭합니다.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Trainer 1 -->
+        <article class="reveal bg-card border border-white/5 rounded-3xl overflow-hidden hover:border-neon/60 transition duration-300">
+          <div class="flex flex-col sm:flex-row">
+            <div class="sm:w-2/5 h-56 sm:h-auto bg-gradient-to-br from-neon/30 via-card to-base flex items-center justify-center relative">
+              <span class="text-7xl font-black text-neon/90 text-glow">KJ</span>
+              <span class="absolute bottom-3 left-3 text-[10px] tracking-widest text-white/60">PHOTO PLACEHOLDER</span>
+            </div>
+            <div class="p-7 sm:w-3/5">
+              <p class="text-neon text-xs font-bold tracking-widest">HEAD TRAINER</p>
+              <h3 class="text-2xl font-black text-white mt-1">김 지후</h3>
+              <p class="text-slate-400 text-sm mt-1">보디빌딩 · 체형교정 전문</p>
+
+              <h4 class="mt-5 text-xs font-bold text-slate-300 tracking-widest">CERTIFICATIONS</h4>
+              <ul class="mt-2 space-y-1.5 text-sm text-slate-300">
+                <li class="flex gap-2"><span class="text-neon">✓</span>NSCA-CPT 국제 공인 퍼스널 트레이너</li>
+                <li class="flex gap-2"><span class="text-neon">✓</span>생활스포츠지도사 2급 (보디빌딩)</li>
+                <li class="flex gap-2"><span class="text-neon">✓</span>체형교정 · 기능해부학 전문 과정 수료</li>
+              </ul>
+
+              <h4 class="mt-5 text-xs font-bold text-slate-300 tracking-widest">AWARDS</h4>
+              <ul class="mt-2 space-y-1.5 text-sm text-slate-300">
+                <li class="flex gap-2"><span class="text-volt">★</span>전국 보디빌딩 선수권 클래식 피지크 우승</li>
+                <li class="flex gap-2"><span class="text-volt">★</span>아시아 피트니스 챔피언십 TOP 3</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Trainer 2 -->
+        <article class="reveal bg-card border border-white/5 rounded-3xl overflow-hidden hover:border-neon/60 transition duration-300">
+          <div class="flex flex-col sm:flex-row">
+            <div class="sm:w-2/5 h-56 sm:h-auto bg-gradient-to-br from-volt/30 via-card to-base flex items-center justify-center relative">
+              <span class="text-7xl font-black text-volt/90" style="text-shadow:0 0 28px rgba(6,182,212,.55)">SH</span>
+              <span class="absolute bottom-3 left-3 text-[10px] tracking-widest text-white/60">PHOTO PLACEHOLDER</span>
+            </div>
+            <div class="p-7 sm:w-3/5">
+              <p class="text-volt text-xs font-bold tracking-widest">SENIOR TRAINER</p>
+              <h3 class="text-2xl font-black text-white mt-1">이 서현</h3>
+              <p class="text-slate-400 text-sm mt-1">바디 프로필 · 다이어트 전문</p>
+
+              <h4 class="mt-5 text-xs font-bold text-slate-300 tracking-widest">CERTIFICATIONS</h4>
+              <ul class="mt-2 space-y-1.5 text-sm text-slate-300">
+                <li class="flex gap-2"><span class="text-neon">✓</span>ACSM-CPT 공인 퍼스널 트레이너</li>
+                <li class="flex gap-2"><span class="text-neon">✓</span>스포츠영양 · 임상영양 코칭 자격</li>
+                <li class="flex gap-2"><span class="text-neon">✓</span>생활스포츠지도사 2급 (보디빌딩)</li>
+              </ul>
+
+              <h4 class="mt-5 text-xs font-bold text-slate-300 tracking-widest">AWARDS</h4>
+              <ul class="mt-2 space-y-1.5 text-sm text-slate-300">
+                <li class="flex gap-2"><span class="text-volt">★</span>국내 피트니스 대회 비키니 부문 입상</li>
+                <li class="flex gap-2"><span class="text-volt">★</span>바디 프로필 누적 코칭 300명+ 달성</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section id="contact" class="relative py-24 bg-base overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 50% 0%, rgba(132,204,22,.14), transparent 60%)"></div>
+    <div class="relative max-w-2xl mx-auto px-5">
+      <div class="reveal text-center mb-10">
+        <p class="text-neon text-sm font-bold tracking-[.25em] mb-3">FREE TRIAL</p>
+        <h2 class="text-3xl sm:text-5xl font-black text-white">지금, 첫 변화를 예약하세요</h2>
+        <p class="mt-4 text-slate-400">간단한 정보만 남겨주시면 담당 매니저가 1회 무료 체험 일정을 안내해 드립니다.</p>
+      </div>
+
+      <form id="consultForm" class="reveal bg-card border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6" novalidate>
+        <div>
+          <label for="name" class="block text-sm font-semibold text-slate-200 mb-2">이름</label>
+          <input id="name" name="name" type="text" required autocomplete="name" placeholder="홍길동"
+                 class="w-full bg-base border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-neon focus:ring-2 focus:ring-neon/30 transition" />
+        </div>
+
+        <div>
+          <label for="phone" class="block text-sm font-semibold text-slate-200 mb-2">전화번호</label>
+          <input id="phone" name="phone" type="tel" required inputmode="numeric" autocomplete="tel" maxlength="13" placeholder="010-0000-0000"
+                 class="w-full bg-base border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-neon focus:ring-2 focus:ring-neon/30 transition" />
+        </div>
+
+        <div>
+          <label for="time" class="block text-sm font-semibold text-slate-200 mb-2">희망 방문시간</label>
+          <select id="time" name="time" required
+                  class="w-full bg-base border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-neon focus:ring-2 focus:ring-neon/30 transition">
+            <option value="" disabled selected>시간대를 선택해 주세요</option>
+            <option>오전 (06:00 ~ 09:00)</option>
+            <option>오전 (09:00 ~ 12:00)</option>
+            <option>오후 (12:00 ~ 15:00)</option>
+            <option>오후 (15:00 ~ 18:00)</option>
+            <option>저녁 (18:00 ~ 21:00)</option>
+            <option>야간 (21:00 ~ 23:00)</option>
+          </select>
+        </div>
+
+        <p id="formError" class="hidden text-sm text-red-400"></p>
+
+        <button type="submit"
+                class="w-full bg-neon text-base font-extrabold text-lg py-4 rounded-full shadow-neon hover:shadow-neon-lg hover:-translate-y-0.5 active:translate-y-0 transition">
+          상담 예약하기
+        </button>
+        <p class="text-xs text-slate-500 text-center">입력하신 정보는 상담 목적으로만 사용됩니다.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-deep border-t border-white/5 py-10 text-center text-sm text-slate-500">
+    <p class="text-white font-black tracking-[.2em] text-lg mb-2">APEX<span class="text-neon">.</span>CLUB</p>
+    <p>© 2026 APEX CLUB. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 스크롤 등장 효과
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // 전화번호 자동 하이픈
+    const phone = document.getElementById('phone');
+    phone.addEventListener('input', () => {
+      const d = phone.value.replace(/\D/g, '').slice(0, 11);
+      let out = d;
+      if (d.length > 7) out = `${d.slice(0,3)}-${d.slice(3,7)}-${d.slice(7)}`;
+      else if (d.length > 3) out = `${d.slice(0,3)}-${d.slice(3)}`;
+      phone.value = out;
+    });
+
+    // 폼 제출
+    const form = document.getElementById('consultForm');
+    const err = document.getElementById('formError');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const digits = form.phone.value.replace(/\D/g, '');
+      const time = form.time.value;
+
+      let msg = '';
+      if (!name) msg = '이름을 입력해 주세요.';
+      else if (digits.length < 10) msg = '올바른 전화번호를 입력해 주세요.';
+      else if (!time) msg = '희망 방문시간을 선택해 주세요.';
+
+      if (msg) { err.textContent = msg; err.classList.remove('hidden'); return; }
+      err.classList.add('hidden');
+
+      alert('상담 예약이 접수되었습니다! 담당 매니저가 곧 연락드립니다.');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
