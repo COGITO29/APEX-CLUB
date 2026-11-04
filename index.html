@@ -275,6 +275,124 @@
     <p>© 2026 APEX CLUB. All rights reserved.</p>
   </footer>
 
+  <!-- AI CHATBOT -->
+  <div id="chatRoot" class="fixed bottom-5 right-5 z-[60] flex flex-col items-end gap-3">
+    <section id="chatPanel" class="hidden flex-col w-[min(380px,calc(100vw-2.5rem))] h-[min(560px,calc(100vh-8rem))] bg-card border border-neon/30 rounded-3xl shadow-neon overflow-hidden" role="dialog" aria-label="AI 상담 챗봇">
+      <div class="flex items-center justify-between px-5 py-4 bg-base border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-neon text-base font-black flex items-center justify-center text-sm">AI</span>
+          <div>
+            <p class="text-sm font-extrabold text-white leading-tight">APEX 상담 도우미</p>
+            <p class="text-[11px] text-neon leading-tight">● 온라인</p>
+          </div>
+        </div>
+        <button id="chatClose" type="button" aria-label="챗봇 닫기" class="text-slate-400 hover:text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+
+      <div id="chatLog" class="flex-1 overflow-y-auto px-4 py-4 space-y-3 text-sm" aria-live="polite"></div>
+
+      <div id="chatChips" class="px-4 pb-2 flex flex-wrap gap-2">
+        <button type="button" data-q="1회 무료 체험은 어떻게 신청하나요?" class="chip text-xs border border-neon/40 text-neon rounded-full px-3 py-1.5 hover:bg-neon hover:text-base transition">무료 체험 신청</button>
+        <button type="button" data-q="프라이빗 샤워룸에 대해 알려주세요." class="chip text-xs border border-neon/40 text-neon rounded-full px-3 py-1.5 hover:bg-neon hover:text-base transition">샤워룸 안내</button>
+        <button type="button" data-q="트레이너 경력이 궁금해요." class="chip text-xs border border-neon/40 text-neon rounded-full px-3 py-1.5 hover:bg-neon hover:text-base transition">트레이너 소개</button>
+      </div>
+
+      <form id="chatForm" class="flex items-center gap-2 p-3 border-t border-white/10 bg-base" autocomplete="off">
+        <input id="chatInput" type="text" maxlength="500" placeholder="궁금한 점을 입력하세요"
+               class="flex-1 min-w-0 bg-card border border-white/10 rounded-full px-4 py-2.5 text-sm text-white focus:outline-none focus:border-neon focus:ring-2 focus:ring-neon/30" />
+        <button id="chatSend" type="submit" aria-label="전송" class="shrink-0 w-10 h-10 rounded-full bg-neon text-base flex items-center justify-center hover:shadow-neon transition disabled:opacity-50">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
+      </form>
+    </section>
+
+    <button id="chatToggle" type="button" aria-label="AI 상담 챗봇 열기" aria-expanded="false"
+            class="w-14 h-14 rounded-full bg-neon text-base shadow-neon hover:shadow-neon-lg hover:-translate-y-0.5 transition flex items-center justify-center">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m-9 6 3-3h11a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v13Z"/></svg>
+    </button>
+  </div>
+
+  <script>
+    // AI 챗봇 (OpenAI 호출은 서버 함수 /api/chat 에서 처리)
+    (() => {
+      const panel = document.getElementById('chatPanel');
+      const toggle = document.getElementById('chatToggle');
+      const closeBtn = document.getElementById('chatClose');
+      const log = document.getElementById('chatLog');
+      const chatForm = document.getElementById('chatForm');
+      const input = document.getElementById('chatInput');
+      const send = document.getElementById('chatSend');
+      const chips = document.getElementById('chatChips');
+      const history = [];
+      let busy = false;
+
+      const bubble = (text, who) => {
+        const wrap = document.createElement('div');
+        wrap.className = who === 'user' ? 'flex justify-end' : 'flex justify-start';
+        const b = document.createElement('div');
+        b.className = who === 'user'
+          ? 'max-w-[85%] bg-neon text-base font-medium rounded-2xl rounded-br-md px-4 py-2.5 whitespace-pre-wrap break-words'
+          : 'max-w-[85%] bg-base text-slate-200 border border-white/10 rounded-2xl rounded-bl-md px-4 py-2.5 whitespace-pre-wrap break-words';
+        b.textContent = text; // textContent 사용 (XSS 방지)
+        wrap.appendChild(b);
+        log.appendChild(wrap);
+        log.scrollTop = log.scrollHeight;
+        return b;
+      };
+
+      const open = (state) => {
+        panel.classList.toggle('hidden', !state);
+        panel.classList.toggle('flex', state);
+        toggle.setAttribute('aria-expanded', String(state));
+        if (state) { input.focus(); log.scrollTop = log.scrollHeight; }
+      };
+
+      bubble('안녕하세요! APEX CLUB AI 상담 도우미입니다 💪 머신, 체형분석, 트레이너, 1회 무료 체험 등 궁금한 점을 편하게 물어보세요.', 'bot');
+
+      toggle.addEventListener('click', () => open(panel.classList.contains('hidden')));
+      closeBtn.addEventListener('click', () => open(false));
+
+      const ask = async (text) => {
+        if (busy || !text) return;
+        busy = true; send.disabled = true;
+        chips.classList.add('hidden');
+        bubble(text, 'user');
+        history.push({ role: 'user', content: text });
+        const pending = bubble('입력 중...', 'bot');
+        pending.classList.add('animate-pulse');
+        try {
+          const r = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: history.slice(-10) })
+          });
+          if (!r.ok) throw new Error(String(r.status));
+          const data = await r.json();
+          pending.classList.remove('animate-pulse');
+          pending.textContent = data.reply;
+          history.push({ role: 'assistant', content: data.reply });
+        } catch (e) {
+          pending.classList.remove('animate-pulse');
+          pending.textContent = '죄송합니다. 지금은 AI 상담 연결이 원활하지 않아요. 아래 [상담 예약하기]로 남겨 주시면 담당 매니저가 직접 연락드리겠습니다.';
+          history.pop(); // 실패한 질문은 대화 기록에서 제외
+        } finally {
+          busy = false; send.disabled = false; input.focus();
+          log.scrollTop = log.scrollHeight;
+        }
+      };
+
+      chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const t = input.value.trim();
+        input.value = '';
+        ask(t);
+      });
+      chips.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => ask(c.dataset.q)));
+    })();
+  </script>
+
   <script>
     // 스크롤 등장 효과
     const io = new IntersectionObserver((entries) => {
